@@ -6,10 +6,15 @@ var laheKood = {
         $('<input/>').attr({type:'text', id: 'smth'}).appendTo('.input');
         $('<button>').attr({type:'button', id:'save'}).html('salvesta').appendTo('.input');
 
-        //console.log(this.list);
+        console.log(this.list);
         for (var i = 0; i < this.list.length; i++) {
                 //console.log(laheKood.list[i]);
-                laheKood.looList(this.list[i].id,this.list[i].value);
+                if (this.list[i].id.typeof === undefined) {
+
+                }else{
+                    laheKood.looList(this.list[i].id,this.list[i].value);
+                }
+
             }
 
     },
@@ -68,7 +73,7 @@ var laheKood = {
             console.log(this.list.length);
             var pikkus = this.list.length;
 
-            for (var i = 0; i < pikkus; i++) {
+            for (var i = 1; i < pikkus; i++) {
                     if (this.list[i]===null){
                         delete this.list[i];
                         //console.log(i+'spliced');
@@ -91,13 +96,9 @@ var laheKood = {
 
    },
 
-   stringify: function(){
-       var smth = JSON.parse(laheKood.loeTxt);
-       console.log(smth);
-       return smth;
-   }
+
 };
 $( document ).ready( function(){
     laheKood.loeTxt();
-    $( "#save" ).click( laheKood.salvestamine() );
+    $( '.sisestus' ).click( laheKood.salvestamine() );
 });
